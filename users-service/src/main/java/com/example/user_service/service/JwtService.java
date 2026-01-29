@@ -14,7 +14,7 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    @Value("${jwt.secret}")
+    @Value("${jwt.secret:q3W9y6kLZ4sVZk8W9Z2YxR1Z9K6Q0c1L}")
     private String secret;
 
     private Key secretKey;
