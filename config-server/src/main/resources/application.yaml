@@ -2,9 +2,12 @@ spring:
   application:
     name: config-server
   cloud:
-    uri: https://github.com/miniDevOnTheWeb/microservices
-    default-label: main
-    search-paths: microservicios
+    config:
+      server:
+        git:
+          uri: https://github.com/miniDevOnTheWeb/microservicios
+          default-label: main
+          search-paths: configuration
 
 server:
   port: 8080

@@ -13,3 +13,5 @@ spring:
     username: diego
     password: Diegomysql03092005!
 
+jwt:
+  secret: thisIsASecretStringforSignKey
