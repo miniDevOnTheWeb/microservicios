@@ -3,7 +3,9 @@ package com.example.products_service.service;
 import com.example.products_service.dto.ProductRequest;
 import com.example.products_service.entity.Product;
 import com.example.products_service.repository.ProductRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,6 +17,12 @@ public class ProductService {
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    public void productExistsById (UUID id) {
+        if(!productRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no existe");
+        }
     }
 
     public Product save(ProductRequest request) {

@@ -37,6 +37,12 @@ public class ProductController {
         return ResponseEntity.ok(productService.findById(id));
     }
 
+    @GetMapping("/exists/{id}")
+    public ResponseEntity<?> existsById(@PathVariable UUID id) {
+        productService.productExistsById(id);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/name/{name}")
     public ResponseEntity<Product> findByName(@PathVariable String name) {
         Product product = productService.findByName(name);

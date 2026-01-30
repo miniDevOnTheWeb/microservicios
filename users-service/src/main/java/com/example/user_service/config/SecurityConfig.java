@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll()
-                            .anyRequest().authenticated();
+                            .anyRequest().permitAll();
                 })
                 .addFilterBefore(securityTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

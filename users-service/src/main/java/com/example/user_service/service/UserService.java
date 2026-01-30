@@ -7,8 +7,10 @@ import com.example.user_service.entity.Admin;
 import com.example.user_service.entity.Client;
 import com.example.user_service.entity.UserEntity;
 import com.example.user_service.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -48,6 +50,14 @@ public class UserService {
 
     public UserEntity getById(UUID id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
+
+    public void existsById (UUID id) {
+        if(!userRepository.existsById(id)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Usuario no existe"
+            );
+        }
     }
 
     public UserEntity updateUser(UUID userId, UpdateUserRequest request) {

@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/orders_db
+    username: diego
+    password: Diegomysql03092005!
+  application:
+    name: orders-service
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8084
