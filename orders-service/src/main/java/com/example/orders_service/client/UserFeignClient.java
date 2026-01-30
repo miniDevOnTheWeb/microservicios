@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.UUID;
 
-@FeignClient(name = "users-service", url = "http://localhost:8082")
+@FeignClient(name = "users-service")
 public interface UserFeignClient {
     @GetMapping("/users/exists/{id}")
     Product userExistsById(
