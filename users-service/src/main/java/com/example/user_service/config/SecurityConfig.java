@@ -3,6 +3,7 @@ package com.example.user_service.config;
 import com.example.user_service.filter.SecurityTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,9 +36,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/auth/**").permitAll()
-                            .anyRequest().permitAll();
+                .authorizeHttpRequests(auth -> {auth
+                    .requestMatchers(HttpMethod.GET, "/users").permitAll()
+                    .requestMatchers("/auth/**").permitAll()
+                            .anyRequest().authenticated();
                 })
                 .addFilterBefore(securityTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

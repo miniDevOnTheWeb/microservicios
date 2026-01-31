@@ -26,3 +26,6 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+jwt:
+  secret: q3W9y6kLZ4sVZk8W9Z2YxR1Z9K6Q0c1L
