@@ -44,11 +44,11 @@ public class SecurityTokenFilter extends OncePerRequestFilter {
         }
 
         String token = authHeader.substring(7);
+        System.out.println(token);
 
         try {
             Claims claims = jwtService.validateAndGetClaims(token);
 
-            Long userId = claims.get("userId", Long.class);
             String username = claims.getSubject();
             UserDetails userDetails = customUserDetails.loadUserByUsername(username);
 
@@ -59,7 +59,6 @@ public class SecurityTokenFilter extends OncePerRequestFilter {
                             null
                     );
 
-            authentication.setDetails(userId);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (JwtException e) {
             SecurityContextHolder.clearContext();

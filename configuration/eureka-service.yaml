@@ -16,3 +16,9 @@ eureka:
 
 jwt:
   secret: q3W9y6kLZ4sVZk8W9Z2YxR1Z9K6Q0c1L
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
