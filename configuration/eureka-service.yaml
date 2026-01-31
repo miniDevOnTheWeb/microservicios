@@ -7,12 +7,12 @@ spring:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka-service
   client:
     fetch-registry: false
     register-with-eureka: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://eureka-service:8761/eureka
 
 jwt:
   secret: q3W9y6kLZ4sVZk8W9Z2YxR1Z9K6Q0c1L
