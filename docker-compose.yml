@@ -1,4 +1,29 @@
+version: "3.9"
+
 services:
+
+  mysql-server:
+    container_name: mysql-server
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: diego
+      MYSQL_PASSWORD: Diegomysql03092005!
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql-data:/var/lib/mysql
+    networks:
+      - microservices
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
   config-server:
     container_name: config-server
     build:
@@ -8,6 +33,9 @@ services:
       - "8080:8080"
     networks:
       - microservices
+    depends_on:
+      mysql-server:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -53,6 +81,8 @@ services:
     networks:
       - microservices
     depends_on:
+      mysql-server:
+        condition: service_healthy
       eureka-server:
         condition: service_healthy
 
@@ -64,6 +94,8 @@ services:
     networks:
       - microservices
     depends_on:
+      mysql-server:
+        condition: service_healthy
       eureka-server:
         condition: service_healthy
 
@@ -75,8 +107,14 @@ services:
     networks:
       - microservices
     depends_on:
+      mysql-server:
+        condition: service_healthy
       eureka-server:
         condition: service_healthy
+
 networks:
   microservices:
     driver: bridge
+
+volumes:
+  mysql-data:

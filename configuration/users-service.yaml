@@ -9,9 +9,10 @@ spring:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/users_db
+    url: jdbc:mysql://mysql-server:3306/users_db
     username: diego
     password: Diegomysql03092005!
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 jwt:
   secret: q3W9y6kLZ4sVZk8W9Z2YxR1Z9K6Q0c1L
