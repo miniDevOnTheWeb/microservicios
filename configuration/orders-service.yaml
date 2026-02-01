@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://mysql-server:3306/products_db
+    url: jdbc:mysql://mysql-server:3306/orders_db
     username: diego
     password: Diegomysql03092005!
     driver-class-name: com.mysql.cj.jdbc.Driver
