@@ -54,9 +54,7 @@ public class UserService {
 
     public void existsById (UUID id) {
         if(!userRepository.existsById(id)) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Usuario no existe"
-            );
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "USUARIO no existe");
         }
     }
 
