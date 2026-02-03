@@ -11,8 +11,14 @@ spring:
     name: orders-service
   jpa:
     show-sql: true
-    hibernate:
+    hibernate:  
       ddl-auto: update
+  cloud:
+    discovery:
+      enabled: false
+    loadbalancer:
+      enabled: false
+
 
 eureka:
   client:

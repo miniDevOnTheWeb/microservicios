@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: orders-service
-          image: diexdev/microservices_project-orders-service:v1
+          image: diexdev/microservices_project-orders-service:v3
           ports:
             - containerPort: 8080
