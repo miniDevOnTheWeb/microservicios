@@ -16,4 +16,4 @@ spec:
         - name: gateway-service
           image: diexdev/microservices_project-gateway-service:v1
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
